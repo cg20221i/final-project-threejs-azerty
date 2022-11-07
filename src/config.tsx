@@ -19,10 +19,7 @@ export default function Header({ title = titleDefault }) {
       {/* Search Engine Optimization Meta Tags */}
       <title>{title}</title>
       <meta name='description' content={description} />
-      <meta
-        name='keywords'
-        content='Software Engineer,Product Manager,Project Manager,Data Scientist,Computer Scientist'
-      />
+      <meta name='GRAFKOM' content='barunastra ITS' />
       <meta name='robots' content='index,follow' />
       <meta name='distribution' content='web' />
       {/* 

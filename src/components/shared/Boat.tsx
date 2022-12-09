@@ -1,38 +1,42 @@
-import React, { useRef } from 'react'
-import { useGLTF } from '@react-three/drei'
+import React, { useRef, useLayoutEffect } from 'react'
+import { useGLTF, useTexture } from '@react-three/drei'
 
 export function Model(props) {
-  const { nodes, materials } = useGLTF('/assets/boat/scene.gltf')
+  const { nodes, materials } = useGLTF('/assets/theseus.glb')
+  const texture = useTexture('/img/boatTexture.png')
+
   return (
     <group {...props} dispose={null}>
-      <group rotation={[-Math.PI / 2, 0, 0]}>
-        <group rotation={[Math.PI / 2, 0, 0]}>
-          <mesh geometry={nodes.polySurface67_CABIN_0.geometry} material={materials.CABIN} />
-          <mesh geometry={nodes.polySurface67_GLASS_0.geometry} material={materials.GLASS} metalness={1} />
-          <mesh geometry={nodes.polySurface70_CABIN_0.geometry} material={materials.CABIN} />
-          <mesh geometry={nodes.polySurface71_CABIN_0.geometry} material={materials.CABIN} />
-          <mesh geometry={nodes.polySurface72_CABIN_0.geometry} material={materials.CABIN} />
-          <mesh
-            geometry={nodes.polySurface73_CABIN_0.geometry}
-            material={materials.CABIN}
-            // material-color='aquamarine'
-          />
-          <group scale={[-1, 1, 1]}>
-            <mesh geometry={nodes.polySurface76_CABIN_0.geometry} material={materials.CABIN} />
-          </group>
-          <mesh geometry={nodes.polySurface82_CABIN_0.geometry} material={materials.CABIN} />
-          <group scale={[-1, 1, 1]}>
-            <mesh geometry={nodes.polySurface83_CABIN_0.geometry} material={materials.CABIN} />
-          </group>
-          <mesh geometry={nodes.pCylinder57_BoatBody_0.geometry} material={materials.BoatBody} />
-          <mesh geometry={nodes.polySurface84_CABIN_0.geometry} material={materials.CABIN} />
-          <mesh geometry={nodes.polySurface85_CABIN_0.geometry} material={materials.CABIN} />
-          <mesh geometry={nodes.polySurface86_CABIN_0.geometry} material={materials.CABIN} />
-          <mesh geometry={nodes.polySurface87_CABIN_0.geometry} material={materials.CABIN} />
-        </group>
-      </group>
+      {/* <mesh
+        geometry={nodes.Studio.geometry}
+        material={nodes.Studio.material}
+        position={[0.06, 0.04, -4.44]}
+        scale={[-9.97, -11.14, -10.78]}
+      /> */}
+      <mesh
+        geometry={nodes.Cylinder001.geometry}
+        material={materials.glass}
+        position={[0.68, 1.34, -2.57]}
+        scale={[0.25, 1.0, 0.25]}
+
+        // material-color='green'
+      >
+        <sphereBufferGeometry args={[1, 64, 64]} />
+        <meshPhysicalMaterial
+          envMapIntensity={0.4}
+          map={texture}
+          clearcoat={0.8}
+          clearcoatRoughness={0}
+          roughness={1}
+          metalness={0}
+        />
+      </mesh>
+      {/* <mesh {...props}>
+        <sphereBufferGeometry args={[1, 64, 64]} />
+      </mesh> */}
+      {/* <mesh geometry={nodes.Geo_Node.geometry} material={nodes.Geo_Node.material} /> */}
     </group>
   )
 }
 
-useGLTF.preload('/scene.gltf')
+useGLTF.preload('/theseus.glb')

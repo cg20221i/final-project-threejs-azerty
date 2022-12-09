@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import * as THREE from 'three'
 import { useEffect, useRef, useState } from 'react'
 import { useFrame } from '@react-three/fiber'
@@ -54,7 +55,7 @@ export function Frame({ url, linkTo, c = new THREE.Color(), ...props }) {
   const [pageClicked, setPage] = useState(false)
   useCursor(hovered)
   useFrame((state, dt) => {
-    image.current.material.zoom = 2 + Math.sin(rnd * 10000 + state.clock.elapsedTime / 3) / 2
+    image.current.material.zoom = 1 + Math.sin(rnd * 10000 + state.clock.elapsedTime / 3) / 5
     easing.damp3(
       image.current.scale,
       [0.85 * (!isActive && hovered ? 0.85 : 1), 0.9 * (!isActive && hovered ? 0.905 : 1), 1],

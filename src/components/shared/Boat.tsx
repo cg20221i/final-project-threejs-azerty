@@ -3,7 +3,7 @@ import { useGLTF, useTexture } from '@react-three/drei'
 
 export function Model(props) {
   const { nodes, materials } = useGLTF('/assets/theseus.glb')
-  const texture = useTexture('/img/boatTexture.png')
+  const texture = useTexture('/img/rustMetal.jpg')
 
   return (
     <group {...props} dispose={null}>
@@ -21,14 +21,14 @@ export function Model(props) {
 
         // material-color='green'
       >
-        <sphereBufferGeometry args={[1, 64, 64]} />
+        {/* <sphereBufferGeometry args={[1, 64, 64]} /> */}
         <meshPhysicalMaterial
           envMapIntensity={0.4}
           map={texture}
           clearcoat={0.8}
-          clearcoatRoughness={0}
-          roughness={1}
-          metalness={0}
+          clearcoatRoughness={5}
+          roughness={0.1}
+          metalness={0.5}
         />
       </mesh>
       {/* <mesh {...props}>

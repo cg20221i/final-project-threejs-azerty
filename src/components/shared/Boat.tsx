@@ -25,10 +25,10 @@ export function Model(props) {
         <meshPhysicalMaterial
           envMapIntensity={0.4}
           map={texture}
-          clearcoat={0.8}
+          clearcoat={0.5}
           clearcoatRoughness={5}
-          roughness={0.1}
-          metalness={0.5}
+          roughness={0.05}
+          metalness={1}
         />
       </mesh>
       {/* <mesh {...props}>

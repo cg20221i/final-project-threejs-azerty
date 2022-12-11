@@ -28,7 +28,7 @@ export function Model(props) {
           clearcoat={0.5}
           clearcoatRoughness={5}
           roughness={0.05}
-          metalness={1}
+          metalness={0.8}
         />
       </mesh>
       {/* <mesh {...props}>

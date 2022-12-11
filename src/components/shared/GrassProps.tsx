@@ -1,13 +1,15 @@
 import * as THREE from 'three'
-import React, { useRef, useMemo } from 'react'
-import { SimplexNoise } from 'three-stdlib'
+import React, { useRef, useMemo, useEffect } from 'react'
+// import { SimplexNoise } from 'three-stdlib'
 import { useFrame, useLoader } from '@react-three/fiber'
+// import SimplexNoise from 'simplex-noise'
+import { createNoise2D } from 'simplex-noise'
 import { Geometry } from 'three/examples/jsm/deprecated/Geometry'
+// import bladeDiffuse from '/img/blade_diffuse.jpeg'
+// import bladeAlpha from '/img/blade_alpha.jpeg'
 import bladeDiffuse from '/Users/gayuhkautaman/Documents/web/grafkom-azerty/public/img/blade_diffuse.jpeg'
 import bladeAlpha from '/Users/gayuhkautaman/Documents/web/grafkom-azerty/public/img/blade_alpha.jpeg'
 import { GrassMaterial } from '@/components/shared/GrassMaterial'
-
-const simplex = new SimplexNoise(Math.random)
 
 export default function GrassProps({
   options = { bW: 0.12, bH: 1, joints: 5 },
@@ -16,8 +18,8 @@ export default function GrassProps({
   ...props
 }) {
   const { bW, bH, joints } = options
-  const materialRef = useRef()
-  const [texture, alphaMap] = useLoader(THREE.TextureLoader, [bladeDiffuse, bladeAlpha])
+  const materialRef: any = useRef()
+  const [texture, alphaMap] = useLoader(THREE.TextureLoader, ['/img/blade_diffuse.jpeg', '/img/blade_alpha.jpeg'])
   const attributeData = useMemo(() => getAttributeData(instances, width), [instances, width])
   const baseGeom = useMemo(() => new THREE.PlaneBufferGeometry(bW, bH, 1, joints).translate(0, bH / 2, 0), [options])
   const groundGeo = useMemo(() => {
@@ -150,8 +152,10 @@ function multiplyQuaternions(q1, q2) {
 }
 
 function getYPosition(x, z) {
-  let y = 2 * simplex.noise2D(x / 50, z / 50)
-  y += 4 * simplex.noise2D(x / 100, z / 100)
-  y += 0.2 * simplex.noise2D(x / 10, z / 10)
+  const simplex = createNoise2D()
+
+  let y = 2 * simplex(x / 50, z / 50)
+  y += 4 * simplex(x / 100, z / 100)
+  y += 0.2 * simplex(x / 10, z / 10)
   return y
 }

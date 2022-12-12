@@ -16,17 +16,19 @@ export default function Page(props) {
   const router = useRouter()
   const [onSpace, setOnSpace] = useState(false)
   const ref = useRef(null)
-  useEffect(() => {
+  const timer = () => {
     setTimeout(() => {
-      ref.current.click()
       router.push('/navigation')
     }, 5000)
-  }, [])
+  }
+  useEffect(() => {
+    if (setOnSpace) {
+      timer()
+    }
+  }, [setOnSpace])
 
   return (
     <section className={`${onSpace ? g.geter : ''}`}>
-      {/* <Link href={'/navgation'}>
-        <a> */}
       <div
         ref={ref}
         className='absolute z-10 cursor-pointer left-1/2 -translate-x-1/2 top-2/3'
@@ -35,8 +37,9 @@ export default function Page(props) {
         onMouseUp={() => setOnSpace(false)}>
         <Button btn='Hold click to enter' onSpace={onSpace} />
       </div>
-      {/* </a>
-      </Link> */}
+      <div>
+        
+      </div>
       <div className='h-screen'>
         <Suspense fallback={`loading...`}>
           <AboutUs />

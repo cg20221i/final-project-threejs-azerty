@@ -1,6 +1,6 @@
 import Scene from './Scene'
 import { Suspense } from 'react'
-import GrassProps from '../shared/GrassProps'
+
 import { Carla, VideoText, Ground, Intro } from '@/helper/AboutUs'
 import { Sky, OrbitControls, Stars, Cloud } from '@react-three/drei'
 
@@ -32,7 +32,7 @@ const AboutUs = () => {
 
           <VideoText position={[0, 1.3, -2]} />
           {/* <Ground /> */}
-          <GrassProps />
+          {/* <GrassProps /> */}
         </group>
         <ambientLight intensity={1} />
         <spotLight position={[0, 10, 0]} intensity={0.5} />

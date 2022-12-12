@@ -1,7 +1,10 @@
 import dynamic from 'next/dynamic'
-import { Suspense } from 'react'
-import Gallery from '@/components/canvas/Gallery'
-import { images } from '@/components/shared/images'
+import { Suspense, useEffect, useState, useRef } from 'react'
+import { useRouter } from 'next/router'
+import AboutUs from '@/components/canvas/AboutUs'
+import g from '@/styles/geter.module.css'
+import Button from '@/components/shared/Button'
+import Link from 'next/link'
 // Dynamic import is used to prevent a payload when the website starts, that includes threejs, r3f etc..
 // WARNING ! errors might get obfuscated by using dynamic import.
 // If something goes wrong go back to a static import to show the error.
@@ -10,12 +13,36 @@ const Logo = dynamic(() => import('@/components/canvas/Logo'), { ssr: false })
 
 // Dom components go here
 export default function Page(props) {
+  const router = useRouter()
+  const [onSpace, setOnSpace] = useState(false)
+  const ref = useRef(null)
+  useEffect(() => {
+    setTimeout(() => {
+      ref.current.click()
+      router.push('/navigation')
+    }, 5000)
+  }, [])
+
   return (
-    <div className='h-screen'>
-      <Suspense fallback={`Loading...`}>
-        <Gallery images={images} />
-      </Suspense>
-    </div>
+    <section className={`${onSpace ? g.geter : ''}`}>
+      {/* <Link href={'/navgation'}>
+        <a> */}
+      <div
+        ref={ref}
+        className='absolute z-10 cursor-pointer left-1/2 -translate-x-1/2 top-2/3'
+        tabIndex={2}
+        onMouseDown={() => setOnSpace(true)}
+        onMouseUp={() => setOnSpace(false)}>
+        <Button btn='Hold click to enter' onSpace={onSpace} />
+      </div>
+      {/* </a>
+      </Link> */}
+      <div className='h-screen'>
+        <Suspense fallback={`loading...`}>
+          <AboutUs />
+        </Suspense>
+      </div>
+    </section>
   )
 }
 

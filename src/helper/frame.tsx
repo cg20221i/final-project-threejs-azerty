@@ -27,8 +27,8 @@ export function Frames({ images, q = new THREE.Quaternion(), p = new THREE.Vecto
     }
   })
   useFrame((state, dt) => {
-    easing.damp3(state.camera.position, p, 0.4, dt, 5)
-    easing.dampQ(state.camera.quaternion, q, 0.4, dt, 5)
+    easing.damp3(state.camera.position, p, 0.3, dt, 5)
+    easing.dampQ(state.camera.quaternion, q, 0.3, dt, 5)
   })
   return (
     <group
@@ -79,7 +79,7 @@ export function Frame({ url, linkTo, c = new THREE.Color(), ...props }) {
         name={name}
         onPointerOver={(e) => (e.stopPropagation(), hover(true))}
         onPointerOut={() => hover(false)}
-        scale={[1, GOLDENRATIO, 0.05]}
+        scale={[1.2 , GOLDENRATIO, 0.05]}
         position={[0, GOLDENRATIO / 2, 0]}>
         <boxGeometry />
         <meshStandardMaterial color='#151515' metalness={0.5} roughness={0.5} envMapIntensity={2} />
@@ -87,7 +87,7 @@ export function Frame({ url, linkTo, c = new THREE.Color(), ...props }) {
           <boxGeometry />
           <meshBasicMaterial toneMapped={false} fog={false} />
         </mesh>
-        <Image raycast={() => null} ref={image} position={[0, 0, 0.7]} url={url} scale={2} />
+        <Image raycast={() => null} ref={image} position={[0, 0, 0.7]} url={url} scale={1} />
       </mesh>
       <mesh
         onClick={() => {
@@ -100,8 +100,8 @@ export function Frame({ url, linkTo, c = new THREE.Color(), ...props }) {
         <boxGeometry />
         <meshStandardMaterial color='#c28802' metalness={1} roughness={0.07} envMapIntensity={6} />
       </mesh>
-      <Text maxWidth={0.4} anchorX='center' anchorY='top' position={[0, 1.75, 0]} fontSize={0.125} strokeWidth={20}>
-        {image.toString()}
+      <Text maxWidth={1} anchorX='center' anchorY='top' position={[0, 1.75, 0]} fontSize={0.125} strokeWidth={20}>
+        {linkTo.replace("/", "")}
       </Text>
     </group>
   )

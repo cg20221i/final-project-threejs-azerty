@@ -4,7 +4,7 @@ export const images = [
   // Front
   { position: [0, 0, 1.5], rotation: [0, 0, 0], url: pexel(1103970), pages: '/theseus' },
   // Back
-  { position: [-0.8, 0, -0.6], rotation: [0, 0, 0], url: pexel(416430), pages: '/about-us' },
+  { position: [-0.8, 0, -0.6], rotation: [0, 0, 0], url: '/img/header.jpg', pages: '/about-us' },
   { position: [0.8, 0, -0.6], rotation: [0, 0, 0], url: pexel(310452), pages: '/blob2' },
   // Left
   { position: [-1.75, 0, 0.25], rotation: [0, Math.PI / 2.5, 0], url: pexel(327482), pages: '/blob2' },

@@ -100,8 +100,8 @@ export function Frame({ url, linkTo, c = new THREE.Color(), ...props }) {
         <boxGeometry />
         <meshStandardMaterial color='#c28802' metalness={1} roughness={0.07} envMapIntensity={6} />
       </mesh>
-      <Text maxWidth={0.1} anchorX='left' anchorY='top' position={[0.55, GOLDENRATIO, 0]} fontSize={0.025}>
-        {name.split('-').join(' ')}
+      <Text maxWidth={0.4} anchorX='center' anchorY='top' position={[0, 1.75, 0]} fontSize={0.125} strokeWidth={20}>
+        {image.toString()}
       </Text>
     </group>
   )

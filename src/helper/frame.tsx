@@ -79,7 +79,7 @@ export function Frame({ url, linkTo, c = new THREE.Color(), ...props }) {
         name={name}
         onPointerOver={(e) => (e.stopPropagation(), hover(true))}
         onPointerOut={() => hover(false)}
-        scale={[1.2 , GOLDENRATIO, 0.05]}
+        scale={[1.2, GOLDENRATIO, 0.05]}
         position={[0, GOLDENRATIO / 2, 0]}>
         <boxGeometry />
         <meshStandardMaterial color='#151515' metalness={0.5} roughness={0.5} envMapIntensity={2} />
@@ -101,7 +101,7 @@ export function Frame({ url, linkTo, c = new THREE.Color(), ...props }) {
         <meshStandardMaterial color='#c28802' metalness={1} roughness={0.07} envMapIntensity={6} />
       </mesh>
       <Text maxWidth={1} anchorX='center' anchorY='top' position={[0, 1.75, 0]} fontSize={0.125} strokeWidth={20}>
-        {linkTo.replace("/", "")}
+        {linkTo.replace('/', '').charAt(0).toUpperCase() + linkTo.slice(2)}
       </Text>
     </group>
   )
